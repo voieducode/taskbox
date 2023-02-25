@@ -36,7 +36,7 @@ export const fetchTasks = createAsyncThunk('todos/fetchTodos', async () => {
  * You can read more about Redux Toolkit's slices in the docs:
  * https://redux-toolkit.js.org/api/createSlice
  */
-const TaskSlice = createSlice({
+const TasksSlice = createSlice({
     name: 'taskbox',
     initialState: TaskBoxData,
     reducers: {
@@ -75,7 +75,7 @@ extraReducers: (builder) => {
 });
 
 // The actions contained in the slice are exported for usage in our component
-export const { updateTaskState } = TaskSlice.actions;
+export const { updateTaskState } = TasksSlice.actions;
 
 /*
  * Our app's store configuration goes here.
@@ -83,7 +83,9 @@ export const { updateTaskState } = TaskSlice.actions;
  * https://redux-toolkit.js.org/api/configureStore
  */
 const store = configureStore({
-        reducer: TaskSlice.reducer
+        reducer: {
+            taskbox: TasksSlice.reducer,
+        }
     }    
 );
 
