@@ -21,7 +21,7 @@ export const MockedState = {
     error: null,
 };
 
-const MockStore = ({ taskboxState, children }) => (
+const Mockstore = ({ taskboxState, children }) => (
     <Provider
         store={configureStore({
                 reducer: {
@@ -56,7 +56,7 @@ export default {
 const Template = () => <TaskList/>;
 export const Default = Template.bind({});
 Default.decorators = [
-    (story) => <MockStore taskboxState={MockedState}>{story()}</MockStore>
+    (story) => <Mockstore taskboxState={MockedState}>{story()}</Mockstore>
 ];
 
 export const WithPinnedTasks = Template.bind({});
@@ -68,43 +68,43 @@ WithPinnedTasks.decorators = [
         ];
 
         return (
-            <MockStore
+            <Mockstore
                 taskboxState={{
                     ...MockedState,
                     tasks: pinnedTasks,
                 }}
             >
                 {story()}
-            </MockStore>
+            </Mockstore>
         );
     },
 ];
 
 export const Loading = Template.bind({});
 Loading.decorators = [
-    (story) => {
-            <MockStore
+    (story) => (
+            <Mockstore
                 taskboxState={{
                     ...MockedState,
                     status: 'loading',
                 }}
             >
                 {story()}
-            </MockStore>
-    },
+            </Mockstore>
+    ),
 ];
 
 export const Empty = Template.bind({});
 Empty.decorators = [
-    (story) => {
-            <MockStore
+    (story) => (
+            <Mockstore
                 taskboxState={{
                     ...MockedState,
                     tasks: [],
                 }}
             >
                 {story()}
-            </MockStore>
-    },
+            </Mockstore>
+    ),
 ];
 
